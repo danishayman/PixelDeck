@@ -77,7 +77,7 @@ Then on the phone:
 2. Open `http://localhost:8765` in Chrome.
 3. Chrome menu (⋮) → **Add to Home screen** → **Install**. Open **PixelDeck** and turn the phone sideways.
 
-That's it. From now on the agent starts when you log in and opens the app whenever the phone is plugged in.
+That's it. From now on the agent starts when you log in, opens the app whenever the phone is plugged in, and starts again by itself within 2 minutes if it ever stops.
 
 ## Using it
 
@@ -120,7 +120,7 @@ All settings and their defaults are in [`agent/config.py`](agent/config.py).
 ## Troubleshooting
 
 - **Phone says "PC offline"**: run `adb devices` and check the phone shows as `device`, then look in `logs\agent.log`.
-- **Nothing on port 8765**: run `.\scripts\restart-agent.ps1`, or `.\.venv\Scripts\python.exe -m agent` to see errors.
+- **Nothing on port 8765**: run `.\scripts\restart-agent.ps1`, or `.\.venv\Scripts\python.exe -m agent` to see errors. For the second one, first run `Disable-ScheduledTask 'PixelDeck Agent'`, or the watchdog may start the background agent in the meantime. Run `Enable-ScheduledTask 'PixelDeck Agent'` when you're done.
 - **Weather error**: check `city` in `config.json`.
 
 <details>
