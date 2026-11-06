@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Mini Screen</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--
+  Live values are bound by name: app.js fills every element with data-b="name",
+  every segmented bar with data-seg="name" and every sparkline with data-spark="name",
+  so each layout below can show any value in its own arrangement.
+-->
+<div id="stage">
+
+  <!-- Layout: big clock (stats on the left) -->
+  <main class="board" data-layout="bigclock" hidden>
+    <div class="bc-stats">
+      <section class="card mini" style="--k: var(--pink)">
+        <div class="tag">CPU</div>
+        <div class="tag right" data-b="cpuTemp" hidden>--&deg;C</div>
+        <div class="val">
+          <span><span class="big" data-b="cpuUtil">--</span><span class="unit">%</span></span>
+          <span class="sub" data-b="cpuTop"></span>
+        </div>
+        <div class="segs" data-seg="cpu" data-n="16"></div>
+      </section>
+
+      <section class="card mini" style="--k: var(--lime)">
+        <div class="tag">GPU</div>
+        <div class="tag right" data-b="gpuTemp">--&deg;C</div>
+        <div class="val">
+          <span><span class="big" data-b="gpuUtil">--</span><span class="unit">%</span></span>
+          <span class="sub" data-b="gpuPower"></span>
+        </div>
+        <div class="segs" data-seg="gpu" data-n="16"></div>
+      </section>
+
+      <section class="card mini" style="--k: var(--orange)">
+        <div class="tag">RAM</div>
+        <div class="tag right" data-b="ramPct">--%</div>
+        <div class="val">
+          <span class="big" data-b="ramUsed">--</span>
+          <span class="sub" data-b="ramTotal">/ -- GB</span>
+        </div>
+        <div class="segs" data-seg="ram" data-n="16"></div>
+      </section>
+
+      <section class="card mini" data-b="netCard" style="--k: var(--purple)">
+        <div class="tag">NET</div>
+        <div class="tag right" data-b="pingTag" hidden>-- MS</div>
+        <div class="netline">
+          <span class="arrow" data-icon="down"></span><span data-b="rxShort">--</span>
+          <span class="arrow" data-icon="up"></span><span data-b="txShort">--</span>
+        </div>
+        <div class="sub" data-b="drivesShort">&nbsp;</div>
+      </section>
+    </div>
+
+    <div class="bc-right">
+      <section class="card clockCard bigclock-card" style="--k: var(--yellow)">
+        <div class="tagbar">
+          <div class="tag" data-b="dateLong">--- -- ---</div>
+          <div class="tag ev" data-b="evTag" hidden></div>
+          <div class="tag" data-b="phoneTag">phone --</div>
+        </div>
+        <div class="bigtime"><span data-b="hh">--</span><span class="colon" data-b="colon">:</span><span data-b="mm">--</span></div>
+        <div class="secs"><div class="segs" data-seg="sec" data-n="40"></div><span class="ss" data-b="ss">00</span></div>
+        <div class="solat" data-b="solat" hidden></div>
+        <div class="bc-weather">
+          <div class="wicon" data-b="wicon"></div>
+          <span class="bc-temp" data-b="wtemp">--&deg;</span>
+          <span data-b="wlabel">loading</span>
+          <span class="walert" data-b="walert" hidden></span>
+          <span class="bc-wright">
+            <span class="wq" data-b="aqi" hidden></span>
+            <span class="wq" data-b="uv" hidden></span>
+            <span class="sub bc-wmeta" data-b="wmetaBc"></span>
+          </span>
+        </div>
+      </section>
+
+      <section class="card mcard bc-media" data-b="mediaCard" style="--k: var(--white)">
+        <div class="art" data-b="art"></div>
+        <div class="minfo">
+          <div class="mtitle" data-b="mtitle">nothing playing</div>
+          <div class="sub"><span data-b="martist"></span> <span data-b="mtime"></span></div>
+          <div class="segs small" data-seg="media" data-n="30"></div>
+        </div>
+        <div class="mbtns">
+          <button class="pbtn sm" data-action="prev" aria-label="Previous"></button>
+          <button class="pbtn sm play" data-action="toggle" aria-label="Play or pause"></button>
+          <button class="pbtn sm" data-action="next" aria-label="Next"></button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Layout: classic (the original design) -->
+  <main class="board" data-layout="classic" hidden>
+    <div class="col-left">
+      <section class="card clock clockCard" style="--k: var(--yellow)">
+        <div class="tag" data-b="date">--- -- ---</div>
+        <div class="tag right" data-b="ampm" hidden>AM</div>
+        <div class="time"><span data-b="hh">--</span><span class="colon" data-b="colon">:</span><span data-b="mm">--</span></div>
+        <div class="week" data-b="week"></div>
+        <div class="secs"><div class="segs" data-seg="sec" data-n="30"></div><span class="ss" data-b="ss">00</span></div>
+        <div class="solat" data-b="solat" hidden></div>
+        <div class="evline" data-b="evLine" hidden></div>
+        <div class="meta">
+          <span data-b="uptime">up --</span>
+          <span data-b="phone">phone --</span>
+        </div>
+      </section>
+
+      <section class="card weather" style="--k: var(--cyan)">
+        <div class="tag" data-b="wplace">weather</div>
+        <div class="tag right" data-b="walert" hidden></div>
+        <div class="wrow">
+          <div class="wicon" data-b="wicon"></div>
+          <div class="wtext">
+            <div class="big" data-b="wtemp">--&deg;</div>
+            <div class="sub" data-b="wlabel">loading</div>
+          </div>
+          <div class="wq-col">
+            <span class="wq" data-b="aqi" hidden></span>
+            <span class="wq" data-b="uv" hidden></span>
+          </div>
+        </div>
+        <div class="sub wmeta" data-b="wmeta">&nbsp;</div>
+      </section>
+    </div>
+
+    <div class="col-right">
+      <section class="card" style="--k: var(--pink)">
+        <div class="tag">CPU</div>
+        <div class="tag right" data-b="cpuTemp" hidden>--&deg;C</div>
+        <div class="row">
+          <div><span class="big" data-b="cpuUtil">--</span><span class="unit">%</span></div>
+          <div class="cores" data-cores></div>
+        </div>
+        <div class="sub" data-b="cpuMeta">&nbsp;</div>
+        <div class="spark" data-spark="cpu" data-n="48" data-h="32"></div>
+      </section>
+
+      <section class="card" style="--k: var(--lime)">
+        <div class="tag">GPU</div>
+        <div class="tag right" data-b="gpuTemp">--&deg;C</div>
+        <div class="row">
+          <div><span class="big" data-b="gpuUtil">--</span><span class="unit">%</span></div>
+          <div class="vram">
+            <div class="sub">VRAM <span data-b="vramTxt">-/-</span></div>
+            <div class="segs small" data-seg="vram" data-n="10"></div>
+          </div>
+        </div>
+        <div class="sub" data-b="gpuMeta">&nbsp;</div>
+        <div class="spark" data-spark="gpu" data-n="48" data-h="32"></div>
+      </section>
+
+      <section class="card" style="--k: var(--orange)">
+        <div class="tag">RAM</div>
+        <div class="tag right" data-b="ramPct">--%</div>
+        <div><span class="big" data-b="ramUsed">--</span><span class="unit" data-b="ramTotal">/ -- GB</span></div>
+        <div class="segs" data-seg="ram" data-n="24"></div>
+      </section>
+
+      <section class="card net" data-b="netCard" style="--k: var(--purple)">
+        <div class="tag" data-b="netTag">NET</div>
+        <div class="tag right" style="--k: var(--purple)">DISK</div>
+        <div class="netgrid">
+          <div><span class="arrow" data-icon="down"></span><span data-b="rx">--</span></div>
+          <div class="r"><span class="arrow">R</span><span data-b="rd">--</span></div>
+          <div><span class="arrow" data-icon="up"></span><span data-b="tx">--</span></div>
+          <div class="r"><span class="arrow">W</span><span data-b="wr">--</span></div>
+        </div>
+        <div class="sub" data-b="drives">&nbsp;</div>
+      </section>
+
+      <section class="card mcard media" data-b="mediaCard" style="--k: var(--white)">
+        <div class="tag">now playing</div>
+        <div class="tag right" data-b="mediaApp" hidden></div>
+        <div class="art" data-b="art"></div>
+        <div class="minfo">
+          <div class="mtitle" data-b="mtitle">nothing playing</div>
+          <div class="sub" data-b="martist">&nbsp;</div>
+          <div class="mprog"><div class="segs small" data-seg="media" data-n="20"></div><span class="sub" data-b="mtime"></span></div>
+        </div>
+        <div class="mbtns">
+          <button class="pbtn" data-action="prev" aria-label="Previous"></button>
+          <button class="pbtn play" data-action="toggle" aria-label="Play or pause"></button>
+          <button class="pbtn" data-action="next" aria-label="Next"></button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Music page: synced lyrics and a visualizer (swipe left from the clock) -->
+  <main class="board" data-layout="music" hidden>
+    <section class="card mcard mu-now" data-b="mediaCard" style="--k: var(--white)">
+      <div class="tag">MUSIC</div>
+      <div class="tag right" data-b="mediaApp" hidden></div>
+      <div class="art mu-art" data-b="art"></div>
+      <div class="minfo">
+        <div class="mtitle" data-b="muTitle">nothing playing</div>
+        <div class="sub" data-b="muArtist">&nbsp;</div>
+        <div class="mprog"><div class="segs small" data-seg="media" data-n="14"></div><span class="sub" data-b="mtime"></span></div>
+      </div>
+      <div class="mbtns">
+        <button class="pbtn sm" data-action="prev" aria-label="Previous"></button>
+        <button class="pbtn sm play" data-action="toggle" aria-label="Play or pause"></button>
+        <button class="pbtn sm" data-action="next" aria-label="Next"></button>
+      </div>
+    </section>
+
+    <div class="mu-right">
+      <section class="card mu-lyrics" style="--k: var(--pink)">
+        <div class="tag">LYRICS</div>
+        <div class="tag right" data-b="lyrState">--</div>
+        <div class="lyr" id="lyr"></div>
+      </section>
+      <section class="card mu-viz" style="--k: var(--cyan)">
+        <canvas id="viz"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <!-- Control page: swipe right from the clock to reach it -->
+  <main class="board" data-layout="controls" hidden>
+    <div class="cp-left">
+      <section class="card cp-vol" style="--k: var(--pink)">
+        <div class="tag">VOLUME</div>
+        <div class="tag right" data-b="volState">--</div>
+        <div class="cp-volrow">
+          <span class="ic cp-spk" data-b="volIcon" data-icon="speaker"></span>
+          <span class="big" data-b="vol">--</span><span class="unit">%</span>
+        </div>
+        <div class="segs volbar" data-seg="vol" data-n="20" id="volBar"></div>
+        <div class="cp-btnrow">
+          <button class="cbtn sq" data-ctl="vol_step" data-v="-5" aria-label="Volume down"><span class="ic" data-icon="minus"></span></button>
+          <button class="cbtn sq" data-ctl="vol_step" data-v="5" aria-label="Volume up"><span class="ic" data-icon="plus"></span></button>
+          <button class="cbtn grow" data-ctl="vol_mute" data-b="muteBtn"><span data-b="muteLabel">MUTE</span></button>
+        </div>
+      </section>
+
+      <section class="card cp-mic cbtn-card" data-ctl="mic_mute" data-b="micCard" style="--k: var(--lime)">
+        <div class="tag">MIC</div>
+        <div class="tag right">TAP</div>
+        <div class="cp-microw">
+          <span class="ic" data-b="micIcon" data-icon="mic"></span>
+          <span class="cp-micstate" data-b="micState">--</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="cp-right">
+      <section class="card cp-apps" style="--k: var(--cyan)">
+        <div class="tag">APPS</div>
+        <div class="appgrid" id="appGrid"></div>
+      </section>
+
+      <section class="card cp-sys" style="--k: var(--orange)">
+        <div class="tag">SYSTEM</div>
+        <div class="tag right">HOLD TO LOCK / SLEEP</div>
+        <div class="sysgrid">
+          <button class="cbtn tile" data-ctl="screenshot"><span class="ic" data-icon="camera"></span><span>SHOT</span></button>
+          <button class="cbtn tile" data-ctl="desktop"><span class="ic" data-icon="desktop"></span><span>DESKTOP</span></button>
+          <button class="cbtn tile" data-local="layout"><span class="ic" data-icon="grid"></span><span data-b="layoutName">CLOCK</span></button>
+          <button class="cbtn tile hold" data-ctl="lock"><span class="ic" data-icon="lock"></span><span>LOCK</span></button>
+          <button class="cbtn tile hold" data-ctl="sleep"><span class="ic" data-icon="sleep"></span><span>SLEEP</span></button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="saver" hidden>
+    <div id="saverClock">--:--</div>
+    <div id="saverMsg">PC offline</div>
+  </div>
+  <div id="toast" hidden></div>
+  <div id="dim"></div>
+</div>
+<script>
+  // Watchdog: if app.js hasn't started within 15 s (failed load, or an older cached
+  // script that doesn't match this page), reload instead of sitting on a black screen.
+  setTimeout(function () { if (!window.miniScreenStarted) location.reload(); }, 15000);
+</script>
+<script src="pixels.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

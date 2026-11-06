@@ -1,0 +1,30 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Local settings ---
+# config.json holds your own settings, including the private address of your
+# calendar. Copy config.example.json to config.json and edit that instead.
+config.json
+
+# --- Runtime data written by the agent ---
+logs/
+cache/
+
+# --- Editors and OS ---
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Claude Code (local per-user files) ---
+.claude/

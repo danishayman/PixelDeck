@@ -1,0 +1,25 @@
+{
+  "port": 8765,
+  "city": "Bayan Lepas",
+  "latitude": null,
+  "longitude": null,
+  "prayer_zone": "PNG01",
+  "calendar": {
+    "ics": [
+      "https://calendar.google.com/calendar/ical/en.malaysia%23holiday%40group.v.calendar.google.com/public/basic.ics"
+    ],
+    "days_ahead": 30,
+    "remind_minutes": 5,
+    "holiday_region": "Penang"
+  },
+  "clock_24h": true,
+  "layout": "bigclock",
+  "phone_serial": "",
+  "phone_app_package": "",
+  "adb_path": "",
+  "night_dim": { "start": "00:00", "end": "07:00", "level": 0.6 },
+  "idle_dim_minutes": 10,
+  "pixel_shift_minutes": 3,
+  "ping": { "hosts": ["1.1.1.1", "8.8.8.8"], "warn_ms": 100 },
+  "haptics": true
+}
