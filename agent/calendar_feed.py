@@ -111,7 +111,7 @@ class CalendarFeed:
 
     async def refresh(self):
         timeout = aiohttp.ClientTimeout(total=30)
-        async with aiohttp.ClientSession(timeout=timeout, headers={"User-Agent": "MiniScreen/1.0"}) as s:
+        async with aiohttp.ClientSession(timeout=timeout, headers={"User-Agent": "PixelDeck/1.0"}) as s:
             await asyncio.gather(*(self._fetch(s, i) for i in range(len(self.urls))))
         events, now = [], time.time()
         for i, ics in enumerate(self._ics):

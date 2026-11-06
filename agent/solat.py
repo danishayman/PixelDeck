@@ -66,7 +66,7 @@ class Solat:
     async def refresh(self):
         params = {"r": "esolatApi/takwimsolat", "period": "week", "zone": self.zone}
         timeout = aiohttp.ClientTimeout(total=20)
-        async with aiohttp.ClientSession(timeout=timeout, headers={"User-Agent": "MiniScreen/1.0"}) as s:
+        async with aiohttp.ClientSession(timeout=timeout, headers={"User-Agent": "PixelDeck/1.0"}) as s:
             async with s.get(API, params=params) as r:
                 r.raise_for_status()
                 data = json.loads(await r.text())

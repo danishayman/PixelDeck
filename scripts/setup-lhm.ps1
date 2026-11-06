@@ -1,5 +1,5 @@
 # Run elevated (once). Makes LibreHardwareMonitor start minimized to the tray
-# at every logon with admin rights, so the Mini Screen can read CPU temperature.
+# at every logon with admin rights, so PixelDeck can read CPU temperature.
 param(
     [Parameter(Mandatory)][string]$Exe,
     [Parameter(Mandatory)][string]$User,
@@ -24,14 +24,14 @@ try {
         "Wrote $cfg"
     }
 
-    $name = 'MiniScreen - LibreHardwareMonitor'
+    $name = 'PixelDeck - LibreHardwareMonitor'
     $action = New-ScheduledTaskAction -Execute $Exe -WorkingDirectory $dir
     $trigger = New-ScheduledTaskTrigger -AtLogOn -User $User
     $principal = New-ScheduledTaskPrincipal -UserId $User -LogonType Interactive -RunLevel Highest
     $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries `
         -ExecutionTimeLimit ([TimeSpan]::Zero) -StartWhenAvailable
     Register-ScheduledTask -TaskName $name -Action $action -Trigger $trigger -Principal $principal `
-        -Settings $settings -Description 'Starts LibreHardwareMonitor for the Mini Screen' -Force | Out-Null
+        -Settings $settings -Description 'Starts LibreHardwareMonitor for PixelDeck' -Force | Out-Null
     "Registered task '$name'"
 
     if (-not (Get-Process LibreHardwareMonitor -ErrorAction SilentlyContinue)) {

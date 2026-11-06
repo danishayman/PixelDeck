@@ -1,6 +1,6 @@
 {
-  "name": "Mini Screen",
-  "short_name": "Mini Screen",
+  "name": "PixelDeck",
+  "short_name": "PixelDeck",
   "description": "PC monitor and desk clock",
   "id": "/",
   "start_url": "/",

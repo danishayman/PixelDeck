@@ -99,7 +99,7 @@ class Adb:
             pass
 
     async def _find_webapk(self, serial: str) -> str | None:
-        """Find the installed Mini Screen web app (a Chrome WebAPK whose scope is localhost)."""
+        """Find the installed PixelDeck web app (a Chrome WebAPK whose scope is localhost)."""
         code, out = await self.run("-s", serial, "shell", "pm", "list", "packages")
         if code != 0:
             return None
@@ -107,7 +107,7 @@ class Adb:
         for pkg in pkgs:
             code, info = await self.run("-s", serial, "shell", "dumpsys", "package", pkg)
             if code == 0 and "localhost" in info:
-                log.info("found Mini Screen web app: %s", pkg)
+                log.info("found PixelDeck web app: %s", pkg)
                 return pkg
         return None
 

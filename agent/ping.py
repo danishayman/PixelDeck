@@ -47,7 +47,7 @@ def icmp_rtt(host: str, timeout_ms: int = ICMP_TIMEOUT_MS) -> int | None:
     if not handle or handle == _INVALID_HANDLE:
         return None
     try:
-        payload = ctypes.create_string_buffer(b"mini-screen", 32)
+        payload = ctypes.create_string_buffer(b"pixeldeck", 32)
         reply = ctypes.create_string_buffer(256)
         if not _iphlp.IcmpSendEcho(handle, dest, payload, len(payload), None, reply, len(reply), timeout_ms):
             return None

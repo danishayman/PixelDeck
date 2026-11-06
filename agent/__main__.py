@@ -1,4 +1,4 @@
-"""Mini Screen agent: collects PC stats and streams them to the phone.
+"""PixelDeck agent: collects PC stats and streams them to the phone.
 
 Run with:  .venv\\Scripts\\python.exe -m agent
 """
@@ -64,7 +64,7 @@ class Hub:
         self.controls = Controls(cfg)
         self.last = None
         port = int(cfg["port"])
-        # Browsers send an Origin header; only the Mini Screen page itself may connect.
+        # Browsers send an Origin header; only the PixelDeck page itself may connect.
         # Without this, any website open on the PC could reach ws://127.0.0.1:PORT.
         self.allowed_origins = {f"http://localhost:{port}", f"http://127.0.0.1:{port}"}
         self._ver = ""

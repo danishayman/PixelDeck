@@ -17,7 +17,7 @@ from . import config as C
 log = logging.getLogger("lyrics")
 
 API = "https://lrclib.net/api/"
-HEADERS = {"User-Agent": "MiniScreen/1.0 (personal desk dashboard)"}
+HEADERS = {"User-Agent": "PixelDeck/1.0 (https://github.com/danishayman/PixelDeck)"}
 RETRY_MISSING = 7 * 86400   # seconds before a "no lyrics" result is looked up again
 DURATION_SLACK = 8          # seconds a version's length may differ from what's playing
 

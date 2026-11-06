@@ -175,7 +175,7 @@ def take_screenshot() -> Path:
     img = ImageGrab.grab(all_screens=True)
     folder = screenshots_dir()
     folder.mkdir(parents=True, exist_ok=True)
-    out = folder / f"MiniScreen {datetime.datetime.now():%Y-%m-%d %H%M%S}.png"
+    out = folder / f"PixelDeck {datetime.datetime.now():%Y-%m-%d %H%M%S}.png"
     img.save(out)
     return out
 

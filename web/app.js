@@ -912,5 +912,5 @@
   keepAwake();
   connect();
   tickClock();
-  window.miniScreenStarted = true;  // seen by the watchdog in index.html
+  window.pixelDeckStarted = true;  // seen by the watchdog in index.html
 })();
