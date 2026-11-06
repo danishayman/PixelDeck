@@ -22,6 +22,7 @@
   --white: #F4F1E8;
   --warm: #FF8C42;
   --hot: #FF3B3B;
+  --islamic: #009000;  /* Islamic green, for the current prayer time */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -115,11 +116,11 @@ html, body {
 .secs .segs { flex: 1; height: 10px; margin-top: 0; }
 .ss { font-family: "PS2P", "DotGothic", monospace; font-size: 12px; color: var(--yellow); width: 26px; text-align: right; }
 
-/* prayer times strip: the current prayer outlined in yellow */
+/* prayer times strip: the current prayer outlined in Islamic green */
 .solat { display: flex; gap: 4px; }
 .solat i { flex: 1 1 auto; font-style: normal; border: 2px solid var(--off); color: var(--mute); text-align: center; white-space: nowrap; }
 .solat b { font-family: "PS2P", "DotGothic", monospace; font-weight: normal; }
-.solat i.now { border-color: var(--yellow); color: var(--yellow); }
+.solat i.now { border-color: var(--islamic); color: var(--islamic); }
 
 /* weather icon */
 .wicon { width: 52px; height: 52px; flex: none; }
