@@ -1,8 +1,9 @@
 // Network-first service worker: always loads fresh files from the PC,
 // falls back to the cached copy so the clock still opens when the PC is off.
-const CACHE = "pixeldeck-v1";
+const CACHE = "pixeldeck-v2";
 const SHELL = [
-  "/", "/index.html", "/style.css", "/app.js", "/pixels.js", "/manifest.webmanifest",
+  "/", "/index.html", "/style.css", "/app.js", "/pixels.js", "/core.js",
+  "/screen-clock.js", "/screen-music.js", "/screen-controls.js", "/manifest.webmanifest",
   "/fonts/press-start-2p.woff2", "/fonts/vt323.woff2", "/icons/icon-192.png",
 ];
 
