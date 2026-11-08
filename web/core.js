@@ -5,8 +5,8 @@
   "use strict";
   const $ = (id) => document.getElementById(id);
   const W = 880, H = 396, HIST = 48;
-  const LAYOUTS = ["bigclock", "classic"];  // clock page styles
-  const LAYOUT_NAMES = { bigclock: "BIG CLOCK", classic: "CLASSIC" };
+  const LAYOUTS = ["bigclock", "classic", "desk"];  // clock page styles
+  const LAYOUT_NAMES = { bigclock: "BIG CLOCK", classic: "CLASSIC", desk: "DESK" };
   const CONTROLS_TIMEOUT = 45000;  // control page returns to the clock after this long untouched
   const MUSIC_TIMEOUT = 120000;    // music page returns to the clock after this long with nothing playing
   // Pages in swipe order: swipe left moves right along this list, swipe right moves left (wrapping).
@@ -87,6 +87,8 @@
     boards.forEach((b) => { b.hidden = b.dataset.layout !== l; });
     board = boards.find((b) => !b.hidden) || boards[0];
     txt("layoutName", LAYOUT_NAMES[currentLayout()].replace(" ", "\n"));
+    if (PD.resetInk) PD.resetInk();
+    if (PD.renderClock) PD.renderClock(new Date());
     fit();
   }
   let toastTimer = null;

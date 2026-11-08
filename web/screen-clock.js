@@ -373,4 +373,5 @@
   PD.renderCalendar = renderCalendar;
   PD.setPlayIcon = setPlayIcon;
   PD.setArt = setArt;
+  PD.resetInk = () => { inkKey = ""; };
 })();

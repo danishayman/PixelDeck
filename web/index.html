@@ -18,7 +18,7 @@
 -->
 <div id="stage">
 
-  <!-- Layout: big clock (stats on the left) -->
+  <!-- Layout: bigclock (stats on the left) -->
   <main class="board" data-layout="bigclock" hidden>
     <div class="bc-stats">
       <section class="card mini" style="--k: var(--pink)">
@@ -197,6 +197,54 @@
         </div>
       </section>
     </div>
+  </main>
+
+  <!-- Layout: desk (clock on top, weather and media player below) -->
+  <main class="board" data-layout="desk" hidden>
+    <section class="card clockCard desk-clock" style="--k: var(--yellow)">
+      <div class="tagbar">
+        <div class="tag" data-b="dateLong">--- -- ---</div>
+        <div class="tag ev" data-b="evTag" hidden></div>
+        <div class="tag" data-b="phoneTag">phone --</div>
+      </div>
+      <div class="bigtime"><span data-b="hh">--</span><span class="colon" data-b="colon">:</span><span data-b="mm">--</span></div>
+      <div class="secs"><div class="segs" data-seg="sec" data-n="48"></div><span class="ss" data-b="ss">00</span></div>
+      <div class="solat" data-b="solat" hidden></div>
+      <div class="week" data-b="week"></div>
+    </section>
+
+    <section class="card weather desk-weather" style="--k: var(--cyan)">
+      <div class="tag" data-b="wplace">weather</div>
+      <div class="tag right walert" data-b="walert" hidden></div>
+      <div class="wrow">
+        <div class="wicon" data-b="wicon"></div>
+        <div class="wtext">
+          <div class="big desk-wtemp" data-b="wtemp">--&deg;</div>
+          <div class="sub desk-wlabel" data-b="wlabel">loading</div>
+        </div>
+        <div class="wq-col">
+          <span class="wq" data-b="aqi" hidden></span>
+          <span class="wq" data-b="uv" hidden></span>
+        </div>
+      </div>
+      <div class="sub desk-wmeta" data-b="wmeta">&nbsp;</div>
+    </section>
+
+    <section class="card mcard desk-media" data-b="mediaCard" style="--k: var(--white)">
+      <div class="tag">now playing</div>
+      <div class="tag right" data-b="mediaApp" hidden></div>
+      <div class="art" data-b="art"></div>
+      <div class="minfo">
+        <div class="mtitle" data-b="mtitle">nothing playing</div>
+        <div class="sub"><span data-b="martist">&nbsp;</span> <span data-b="mtime"></span></div>
+        <div class="segs small" data-seg="media" data-n="30"></div>
+      </div>
+      <div class="mbtns">
+        <button class="pbtn sm" data-action="prev" aria-label="Previous"></button>
+        <button class="pbtn sm play" data-action="toggle" aria-label="Play or pause"></button>
+        <button class="pbtn sm" data-action="next" aria-label="Next"></button>
+      </div>
+    </section>
   </main>
 
   <!-- Music page: synced lyrics and a visualizer (swipe left from the clock) -->
